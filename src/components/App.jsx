@@ -10,7 +10,7 @@ export class App extends Component {
     neutral: 0,
     bad: 0
   }
-  options = ['Good','Neutral','Bad']
+  
   countFeedback = (evt) => {
     const option = evt.target.value;
     this.setState(prevState => {
@@ -39,6 +39,7 @@ export class App extends Component {
   }
 
   render() {
+    const options = ['Good', 'Neutral', 'Bad'];
     const { good, neutral, bad } = this.state;
     return (
       <div
@@ -55,7 +56,7 @@ export class App extends Component {
         }}
       >
         
-        <Section title="Please leave feedback"><FeedbackOptions options={this.options} onLeaveFeedback={this.countFeedback} /></Section>
+        <Section title="Please leave feedback"><FeedbackOptions options={options} onLeaveFeedback={this.countFeedback} /></Section>
         {this.countTotalFeedback() === 0 && <Notification message="There is no feedback" />}
         {this.countTotalFeedback() !== 0 && <Section title="Statistic"><Statistic good={good} neutral={neutral} bad={bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()} /></Section>}
       </div>
